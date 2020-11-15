@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Pocket Casts Play/Pause",
+  "version": "1.0",
+  "description": "Play/Pause action for Pocket Casts Web Player",
+  "homepage_url": "https://github.com/",
+  "icons": {
+    "48": "icons/play-pause.svg"
+  },
+
+  "permissions": [
+    "tabs",
+    "https://play.pocketcasts.com/*/",
+    "https://www.youtube.com/*"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/play-pause.svg",
+    "default_title": "Play/Pause Hub",
+    "default_popup": "popup/media_list.html"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

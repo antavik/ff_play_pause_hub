@@ -1,0 +1,27 @@
+html, body {
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 2% auto;
+  padding: 2px;
+  text-align: left;
+  font-size: 1.0em;
+  cursor: pointer;
+}
+
+.player:hover {
+  background-color: #CFF2F3;
+}
+
+.player {
+  background-color: #E5F2F2;
+}
+
+.playing {
+  background-color: #17B7DE;
+}
