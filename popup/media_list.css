@@ -22,6 +22,10 @@ html, body {
   background-color: #E5F2F2;
 }
 
-.playing {
-  background-color: #17B7DE;
+.active:hover {
+  background-color: #E56DC5;
+}
+
+.active {
+  background-color: #CDA5C2;
 }

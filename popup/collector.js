@@ -5,8 +5,6 @@ const pocketCastsAlias = "pc";
 const youTubeUrl = "https://www.youtube.com";
 const youTubeAlias = "yt";
 
-let buttons;
-
 function handleDomLoaded(e) {
     requestAllTabs()
     .then(resp => loadedTabs(resp));
@@ -14,13 +12,13 @@ function handleDomLoaded(e) {
 
 function requestAllTabs() {
     return Promise.all([
-        requestTabs(`${pocketCastsUrl}/*`),
-        requestTabs(`${youTubeUrl}/*`)
+        requestTab(`${pocketCastsUrl}/*`),
+        requestTab(`${youTubeUrl}/*`)
     ])
     .then(responses => responses.flat());
 }
 
-function requestTabs(domain) {
+function requestTab(domain) {
     return browser.tabs.query({url: domain})
     .then(
         (mediaTabs) => {
@@ -43,14 +41,21 @@ function setPlayersList (tabs) {
     const mediaListDiv = document.getElementById("media-list");
 
     for (let tab of tabs) {
+        // Create new element
         let newMediaElement = document.createElement("div");
 
+        // Set text content
         let content = document.createTextNode(tab.title);
         newMediaElement.appendChild(content);
 
-        newMediaElement.setAttribute("class", "button player");
-        newMediaElement.setAttribute("tab-id", tab.id);
+        // Set CSS classes
+        newMediaElement.classList.add("button", "player");
+        if (tab.audible) {
+            newMediaElement.classList.add("active");
+        }
 
+        // Set attributes
+        newMediaElement.setAttribute("tab-id", tab.id);
         if (tab.url.includes(pocketCastsUrl)) {
             newMediaElement.setAttribute("tab-type", pocketCastsAlias);
         } else if (tab.url.includes(youTubeUrl)) {
@@ -67,6 +72,7 @@ function setupClickEvent (element) {
     element.addEventListener("click", (event) => {
             let tabId = event.target.getAttribute("tab-id");
             let tabType = event.target.getAttribute("tab-type");
+            event.target.classList.toggle("active");
             browser.tabs.executeScript(Number(tabId), { file: `./${tabType}_play_pause.js` });
         }
     )
