@@ -8,7 +8,7 @@ html, body {
 
 .button {
   margin: 2% auto;
-  padding: 2px;
+  padding: 3px;
   text-align: left;
   font-size: 1.0em;
   cursor: pointer;
@@ -23,7 +23,7 @@ html, body {
 }
 
 .active:hover {
-  background-color: #E56DC5;
+  background-color: #CE9ABE;
 }
 
 .active {

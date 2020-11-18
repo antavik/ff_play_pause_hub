@@ -41,6 +41,8 @@ function setPlayersList (tabs) {
     const mediaListDiv = document.getElementById("media-list");
 
     for (let tab of tabs) {
+        console.log(tab.id, tab.title);
+        browser.tabs.sendMessage(61, {action: 'play'});
         // Create new element
         let newMediaElement = document.createElement("div");
 
@@ -73,7 +75,7 @@ function setupClickEvent (element) {
             let tabId = event.target.getAttribute("tab-id");
             let tabType = event.target.getAttribute("tab-type");
             event.target.classList.toggle("active");
-            browser.tabs.executeScript(Number(tabId), { file: `./${tabType}_play_pause.js` });
+            browser.tabs.executeScript(Number(tabId), { file: "../PlayPauseAction.js" });
         }
     )
 }

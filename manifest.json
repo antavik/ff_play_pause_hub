@@ -1,16 +1,23 @@
 {
   "manifest_version": 2,
-  "name": "Pocket Casts Play/Pause",
+  "name": "Play/Pause Hub",
   "version": "1.0",
-  "description": "Play/Pause action for Pocket Casts Web Player",
-  "homepage_url": "https://github.com/",
+  "description": "Play/Pause hub for web players",
+  "homepage_url": "https://github.com/antibantique/ff_play_pause_hub",
   "icons": {
     "48": "icons/play-pause.svg"
+  },
+  "applications": {
+    "gecko": {
+      "id": "ff_pp@antibantique.github.org",
+      "strict_min_version": "57.0"
+    }
   },
 
   "permissions": [
     "tabs",
-    "https://play.pocketcasts.com/*/",
+    "activeTab",
+    "https://play.pocketcasts.com/*",
     "https://www.youtube.com/*"
   ],
 
@@ -21,6 +28,15 @@
   },
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["handleHotKeys.js"]
+  },
+
+  "commands": {
+    "play-pause": {
+      "suggested_key": {
+        "default": "Command+Alt+P"
+      },
+      "description": "Play/Pause"
+    }
   }
 }
