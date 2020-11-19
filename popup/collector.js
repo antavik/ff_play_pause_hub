@@ -41,7 +41,6 @@ function setPlayersList (tabs) {
     const mediaListDiv = document.getElementById("media-list");
 
     for (let tab of tabs) {
-        console.log(tab.id, tab.title);
         browser.tabs.sendMessage(61, {action: 'play'});
         // Create new element
         let newMediaElement = document.createElement("div");

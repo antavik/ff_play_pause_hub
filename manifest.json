@@ -16,7 +16,6 @@
 
   "permissions": [
     "tabs",
-    "activeTab",
     "https://play.pocketcasts.com/*",
     "https://www.youtube.com/*"
   ],
