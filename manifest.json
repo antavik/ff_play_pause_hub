@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Play/Pause Hub",
-  "version": "1.0",
+  "version": "1.0.2",
   "description": "Play/Pause hub for web players",
   "homepage_url": "https://github.com/antibantique/ff_play_pause_hub",
   "icons": {
@@ -18,6 +18,18 @@
     "tabs",
     "https://play.pocketcasts.com/*",
     "https://www.youtube.com/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://play.pocketcasts.com/*",
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "playPauseAction.js"
+      ]
+    }
   ],
 
   "browser_action": {
