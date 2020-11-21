@@ -10,11 +10,11 @@ function handleHotKeys(command) {
 
 function processCommand(command) {
     requestAllAudibleTabs()
-    .then(resp => command(resp));
+    .then((resp) => { command(resp) });
 }
 
 function requestAllAudibleTabs() {
-    return Promise.all([audibleTabs()]).then(tabs => tabs.flat());
+    return Promise.all([audibleTabs()]).then((tabs) => { tabs.flat() });
 }
 
 function audibleTabs() {
@@ -23,9 +23,7 @@ function audibleTabs() {
         (mediaTabs) => {
             return mediaTabs == null || mediaTabs.length === 0 ? [] : mediaTabs;
         }, () => [])
-    .catch(() => {
-        return [];
-    });
+    .catch(() => { return [] });
 }
 
 function playPause(tabs) {
