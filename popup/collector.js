@@ -75,7 +75,7 @@ async function clickEvent(event) {
     let tabId = Number(event.target.getAttribute("tab-id"));
     let tabType = event.target.getAttribute("tab-type");
 
-    browser.tabs.executeScript(tabId, {file: "../PlayPauseAction.js"})
+    browser.tabs.executeScript(tabId, {code: "playPauseAction();"})
     .then(() => { event.target.classList.toggle("active") })
     .catch((error) => { console.log(error) });
 }
