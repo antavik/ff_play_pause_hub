@@ -7,7 +7,7 @@ const youTubeAlias = "yt";
 
 function handleDomLoaded(e) {
     requestAllTabs()
-    .then(resp => loadedTabs(resp));
+    .then((response) => { loadedTabs(response) });
 }
 
 function requestAllTabs() {
@@ -15,7 +15,8 @@ function requestAllTabs() {
         requestTab(`${pocketCastsUrl}/*`),
         requestTab(`${youTubeUrl}/*`)
     ])
-    .then(responses => responses.flat());
+    .then((responses) => { return responses.flat() })
+    .catch((error) => { console.log(error) });
 }
 
 function requestTab(domain) {
@@ -23,10 +24,8 @@ function requestTab(domain) {
     .then(
         (mediaTabs) => {
             return mediaTabs == null || mediaTabs.length === 0 ? [] : mediaTabs;
-        }, () => [])
-    .catch(() => {
-        return [];
-    });
+        }, () => { return [] })
+    .catch(() => { return [] });
 }
 
 function loadedTabs(tabs) {
@@ -41,7 +40,6 @@ function setPlayersList (tabs) {
     const mediaListDiv = document.getElementById("media-list");
 
     for (let tab of tabs) {
-        browser.tabs.sendMessage(61, {action: 'play'});
         // Create new element
         let newMediaElement = document.createElement("div");
 
@@ -70,13 +68,16 @@ function setPlayersList (tabs) {
 }
 
 function setupClickEvent (element) {
-    element.addEventListener("click", (event) => {
-            let tabId = event.target.getAttribute("tab-id");
-            let tabType = event.target.getAttribute("tab-type");
-            event.target.classList.toggle("active");
-            browser.tabs.executeScript(Number(tabId), { file: "../PlayPauseAction.js" });
-        }
-    )
+    element.addEventListener("click", clickEvent);
+}
+
+async function clickEvent(event) {
+    let tabId = Number(event.target.getAttribute("tab-id"));
+    let tabType = event.target.getAttribute("tab-type");
+
+    browser.tabs.executeScript(tabId, {file: "../PlayPauseAction.js"})
+    .then(() => { event.target.classList.toggle("active") })
+    .catch((error) => { console.log(error) });
 }
 
 function setEmptyPopup() {
