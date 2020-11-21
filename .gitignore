@@ -1,0 +1,9 @@
+*.zip
+
+# Firefox extension
+*.xpi
+
+build/
+
+# macOS folder configs
+.DS_Store
