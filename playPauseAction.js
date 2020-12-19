@@ -1,4 +1,9 @@
-function playPauseAction() {
-    var playPauseButtons = document.querySelectorAll('[class^="AnimatedPlayButtonstyled"], [class^="ytp-play-button"]');
-    playPauseButtons[playPauseButtons.length - 1].click();
+async function playPauseAction() {
+    var playPauseElement = document.querySelector('video, audio');
+
+    if (playPauseElement.paused) {
+        await playPauseElement.play();
+    } else {
+        await playPauseElement.pause();
+    }
 }
