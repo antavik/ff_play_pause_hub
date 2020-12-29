@@ -55,11 +55,6 @@ function setPlayersList (tabs) {
 
         // Set attributes
         newMediaElement.setAttribute("tab-id", tab.id);
-        if (tab.url.includes(pocketCastsUrl)) {
-            newMediaElement.setAttribute("tab-type", pocketCastsAlias);
-        } else if (tab.url.includes(youTubeUrl)) {
-            newMediaElement.setAttribute("tab-type", youTubeAlias);
-        }
 
         setupClickEvent(newMediaElement);
 
@@ -73,7 +68,6 @@ function setupClickEvent (element) {
 
 async function clickEvent(event) {
     let tabId = Number(event.target.getAttribute("tab-id"));
-    let tabType = event.target.getAttribute("tab-type");
 
     browser.tabs.executeScript(tabId, {code: "playPauseAction();"})
     .then(() => { event.target.classList.toggle("active") })
