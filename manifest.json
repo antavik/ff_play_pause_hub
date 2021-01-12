@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Play/Pause Hub",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Play/Pause hub for web players",
   "homepage_url": "https://github.com/antibantique/ff_play_pause_hub",
   "icons": {

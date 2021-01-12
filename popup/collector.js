@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", handleDomLoaded);
 
 const pocketCastsUrl = "https://play.pocketcasts.com";
-const pocketCastsAlias = "pc";
 const youTubeUrl = "https://www.youtube.com";
-const youTubeAlias = "yt";
 
 function handleDomLoaded(e) {
     requestAllTabs()
@@ -51,6 +49,8 @@ function setPlayersList (tabs) {
         newMediaElement.classList.add("button", "player");
         if (tab.audible) {
             newMediaElement.classList.add("active");
+        } else if (tab.isArticle == undefined) {  // To define is tab loaded or not
+            newMediaElement.classList.add("not-ready")
         }
 
         // Set attributes
