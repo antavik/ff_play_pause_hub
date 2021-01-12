@@ -29,3 +29,12 @@ html, body {
 .active {
   background-color: #CDA5C2;
 }
+
+.not-ready:hover {
+  background-color: #db5959;
+  cursor: not-allowed;
+}
+
+.not-ready {
+  background-color: #e66d6d;
+}
